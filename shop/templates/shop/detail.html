@@ -1,0 +1,68 @@
+{% extends "./base.html" %}
+{% block content %}
+
+<div class="container mx-auto">
+    <a href="/shop/" class="pb-16">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-32 w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+    </a>
+    <div class="flex flex-col md:flex-row justify-center  md:justify-around mt-10 mb-40">
+        <div>
+            <img class="max-w-80 md:max-w-md" id="image_product" src="{{product_object.image}}" alt="product"/>
+        </div>
+        <div>
+            <h1 class="text-5xl font-bold" id='title_name'>{{ product_object.title }}</h1>
+            <div class="max-w-96 mt-5">
+                {% if product_object.price != product_object.discount_price %}
+                    <p class="font-bold pb-5"> <span class="line-through text-lg">${{ product_object.price }}</span>
+                    <span class="font-bold pb-5 text-xl" id="price">${{ product_object.discount_price }}</span></p>
+                {% else %}
+                    <p class="font-bold pb-5 text-xl" id="price" >${{ product_object.price }}</p>
+                {% endif %}
+                <p>{{ product_object.description }}</p>
+
+                <button type="submit" name='add_cart' id='add_cart' value={{product_object.id}}
+                    class="mt-5 text-black rounded-full focus:border-gray-500 focus:ring-0 
+                            p-[1.5px] pl-4 border-2 border-black hover:scale-110 
+                            focus:outline-none  font-medium text-sm px-4 py-2">
+                        Add to cart
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script type='text/javascript'>
+        if(localStorage.getItem('cart') == null) {
+            var cart = {};
+        } else {
+            cart = JSON.parse(localStorage.getItem('cart'))
+        }
+
+        $(document).ready(function () {
+
+            $("#add_cart").click(function () {
+
+                let item_id = this.value
+                if (cart[item_id] != undefined){
+                    cart[item_id][1] += 1;
+                } else {
+                    id = item_id
+                    qty = 1
+                    price = document.getElementById("price").innerHTML
+                    name = document.getElementById("title_name").innerHTML
+                    image = document.getElementById("image_product").src
+                    cart[item_id] = [id,qty,price,name,image]
+                }
+                localStorage.setItem('cart', JSON.stringify(cart))
+                document.getElementById("number_item").innerHTML = "("+Object.keys(cart).length+")"
+
+            });
+
+          });
+
+    </script>
+
+{% endblock %}

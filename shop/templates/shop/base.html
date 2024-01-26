@@ -1,0 +1,48 @@
+{% load static tailwind_tags %}
+
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Django App</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    </head>
+    <body>
+
+        {% tailwind_css %}
+
+        <div class="container mx-auto">
+            <nav class="flex items-center p-11">
+                <div class='mx-auto'>
+                    <h1 class='text-3xl italic mx-auto'>
+                        {% block title %} My Django and Tailwind website {% endblock %}
+                    </h1>
+                </div>
+                <a href="/shop/checkout/">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                    </svg>
+                </a>
+                <div class="pr-10">
+                    <span id='number_item'></span>
+                </div>
+            </nav>
+        </div>
+
+            {% block content %}{% endblock %}
+        
+    </body>
+</html>
+
+<script type='text/javascript'>
+    if(localStorage.getItem('cart') != null) {
+        var cart = JSON.parse(localStorage.getItem('cart'))
+        document.getElementById("number_item").innerHTML = "("+Object.keys(cart).length+")"
+    }
+</script>

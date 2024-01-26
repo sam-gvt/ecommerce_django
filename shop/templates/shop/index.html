@@ -1,0 +1,65 @@
+
+{% extends "./base.html" %}
+{% block content %}
+		
+
+<div class="flex justify-center mb-20">
+	<form>
+		<input class="
+			w-[350px] 
+			rounded-full p-[1.5px] pl-4
+			focus:border-gray-500 focus:ring-0
+			border-2 border-black hover:scale-110 
+			transition-transform duration-200 ease-out
+		" placeholder='"Iphone 12 pro"' type="search" name="item_name" />
+		<button type="submit" 
+			class="ml-5 text-black rounded-full focus:border-gray-500 focus:ring-0 
+					p-[1.5px] pl-4 border-2 border-black hover:scale-110 
+					focus:outline-none  font-medium text-sm px-4 py-2">
+				Search
+		</button>
+	</form>
+
+</div>
+<div class="grid grid-cols-1 mx-auto md:grid-cols-3 max-w-6xl">
+	{% for product in product_objects %}
+		<a href="product/{{product.id}}/">
+			<div class="hover:scale-110  transition-transform duration-200 ease-out max-w-sm rounded overflow-hidden shadow-lg mt-5">
+				<img class="w-32" src="{{ product.image }}" alt="Sunset in the mountains">
+				<div class="px-6 py-4">
+					<div class="font-bold text-xl mb-2">{{ product.title }}</div>
+					<div class="font-bold text-xl mb-2">${{ product.price }}</div>
+
+					<p class="text-gray-700 text-base max">
+						{{ product.description }}
+					</p>
+				</div>
+				<div class="px-6 pt-4 pb-2">
+					<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#tech</span>
+					<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#new</span>
+					<span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#best seller</span>
+				</div>
+			</div>
+		</a>
+	{% endfor %}
+</div>
+
+<div class="flex justify-center p-12">
+	{% if product_objects.has_previous %}
+		<a href="?page={{product_objects.previous_page_number}}">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5" />
+			</svg>
+		</a>
+	{% endif %}
+	{{page_number}}
+	{% if product_objects.has_next %}
+		<a href="?page={{product_objects.next_page_number}}">
+			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+				<path stroke-linecap="round" stroke-linejoin="round" d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5" />
+			</svg>
+		</a>
+	{% endif %}
+</div>
+
+{% endblock %}

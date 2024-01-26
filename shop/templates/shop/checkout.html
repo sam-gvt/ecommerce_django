@@ -1,0 +1,208 @@
+{% extends "./base.html" %}
+{% block content %}
+
+
+<div class="container mx-auto mt-10 text-[28px] mb-36">
+    <a href="/shop/" class="">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="ml-32 mb-6 w-7 h-7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+    </a>
+    <div class="border-b-2 mr-[10%] ml-[10%]">
+        <h1 class="italic">Shopping cart</h1>
+    </div>
+
+    <div class="flex flex-col justify-between mr-[10%] ml-[10%] md:flex-row">
+        <div class="flex flex-col text-sm mt-14 items_container"></div>
+
+        <div class="sticky mt-14 ">
+            <form method="POST" class="max-w-md mx-auto">
+                {% csrf_token %}
+                <input type="hidden" id="items" name="items">
+
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="email" name="email" id="email" class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="email" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email address</label>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="text" name="first_name" id="first_name" class="block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="first_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First name</label>
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <input type="text" name="last_name" id="last_name" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="last_name" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last name</label>
+                </div>
+                </div>
+                
+                <div class="grid md:grid-cols-1 md:gap-6">
+                    <div class="relative z-0 w-full mb-5 group">
+                        <input type="address"  name="address" id="address" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="address" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Address</label>
+                    </div>
+                
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                    <div class="relative z-0 w-full mb-5 group">
+                        <input type="text" name="city" id="city" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="city" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">City</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-5 group">
+                        <input type="text" name="state" id="state" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="state" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">State (NSW, VIC...)</label>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 md:gap-6">
+                    <div class="relative z-0 w-full mb-5 group">
+                        <input type="text" name="zip" id="zip" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="zip" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">ZIP</label>
+                    </div>
+                    <div class="relative z-0 w-full mb-5 group">
+                        <input type="tel" pattern="[0-9]{10}" name="phone" id="phone" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none  dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                        <label for="phone" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number</label>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center pt-5">
+                    <p class="text-2xl font-bold mr-14" id="total_price">0</p> 
+                    <button hidden id="submit_button" type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Place Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+<script type="text/javascript">
+    
+    $(document).ready(function() {
+
+        if(localStorage.getItem('cart') == null) {
+            var cart = {};
+        } else {
+            cart = Object.values(JSON.parse(localStorage.getItem('cart')))
+            if(cart.length > 0){
+                $("#submit_button").show()
+            }
+            
+        }
+
+        for(item of cart) {
+            let div_item = 
+            `
+            <div class="flex mb-8 mx-auto containerItem-${item[0]}" >
+                <img class="w-20 md:max-w-md" id="image_product" src="${item[4]}" alt="product"/>
+                <ul class="ml-24">
+                    <li class="text-lg font-bold"> ${item[3]} </li>
+                    <li>${item[2]}</li>
+                    <div class="w-44">
+                        <li>
+                            <div class="relative flex items-center">
+                                <button type="button" data-element-id="${item[0]}" class="decrement-button flex-shrink-0 bg-white dark:bg-black inline-flex items-center justify-center border rounded-md h-5 w-5 focus:ring-white focus:ring-2 focus:outline-none">
+                                    <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16"/>
+                                    </svg>
+                                </button>
+                                <span class="p-2" id="qty-${item[0]}">${item[1]}</span>
+                                <button data-element-id="${item[0]}" class="increment-button flex-shrink-0 bg-white dark:bg-black   inline-flex items-center justify-center border rounded-md h-5 w-5 focus:ring-gray-100 focus:ring-2 focus:outline-none">
+                                    <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </li>
+                        <li>
+                            <button data-delete-id="${item[0]}" id="delete-item-${item[0]}" class="delete-button hover:underline">
+                                Delete
+                            </button>
+                        </li>
+                    </div> 
+                </ul>
+            </div>`
+
+            var container = document.querySelector('.items_container');
+            container.innerHTML += div_item
+
+        }
+
+
+        $(".increment-button").click(function () {
+            var elementId = $(this).data("element-id");
+
+            var qty = parseInt($(`#qty-${elementId}`).text()) + 1
+            $(`#qty-${elementId}`).text(qty);
+            
+
+            arrayToUpdate = JSON.parse(localStorage.getItem('cart'))[elementId]
+            arrayToUpdate[1] = arrayToUpdate[1]+1
+            let cart = JSON.parse(localStorage.getItem('cart'))
+            cart[elementId] = arrayToUpdate
+            localStorage.setItem('cart', JSON.stringify(cart));
+            total_price_calcul()
+
+        })
+
+        $(".decrement-button").click(function () {
+            var elementId = $(this).data("element-id");
+
+            // update qty display
+            var qty = parseInt($(`#qty-${elementId}`).text()) - 1
+            if (qty > 0) {
+                $(`#qty-${elementId}`).text(qty);
+
+                // localStorage update
+                arrayToUpdate = JSON.parse(localStorage.getItem('cart'))[elementId]
+                arrayToUpdate[1] = arrayToUpdate[1]-1
+                let cart = JSON.parse(localStorage.getItem('cart'))
+                cart[elementId] = arrayToUpdate
+                localStorage.setItem('cart', JSON.stringify(cart));
+                total_price_calcul()
+
+            }
+        })
+
+        $(".delete-button").click(function () {
+                // localStorage update
+                let elementId = $(this).data("delete-id");
+                var cartData = JSON.parse(localStorage.getItem('cart'))
+                delete cartData[elementId];
+                localStorage.setItem('cart', JSON.stringify(cartData));
+
+                // display update
+                $(`.containerItem-${elementId}`).remove()
+
+                if(Object.values(JSON.parse(localStorage.getItem('cart'))) <= 0) {
+                    $("#submit_button").hide()                
+                }
+                total_price_calcul()
+        })
+
+        $("#items").val(JSON.stringify(cart));
+
+        // total price calcul
+        total_price_calcul()
+        function total_price_calcul() {
+
+            let total_price = 0
+            let _cart = Object.values(JSON.parse(localStorage.getItem('cart')))
+            
+            for (let i=0; i < _cart.length; i++) {
+                let price_item = _cart[i][2]
+                let priceFormat = price_item.replace("$", "");
+                price_item = parseFloat(priceFormat) * _cart[i][1];
+    
+                total_price += price_item
+            }
+            $("#total_price").text("$"+total_price)
+        }
+
+
+    });
+
+</script>
+
+{% endblock %}
