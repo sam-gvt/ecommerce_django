@@ -5,15 +5,21 @@ You need to have python installed
 
 Website purpose : practice
 
+![Alt Text 1](./theme/images/homePage.png)
+
+
 KEY FEATURES :
 - products presentation
 - product detail
+- product search bar with product name
 - pagination with the Paginator class provided by django
 - cart
 - tailwind css integration
 - admin management 
-- localStorage
+- using localStorage
+- order form
 
+![Alt Text 2](./theme/images/cartPage.png)
 ```bash
 git clone https://github.com/sam-gvt/ecommerce_django.git
 ```
