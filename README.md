@@ -1,7 +1,7 @@
 # Ecommerce Django website
 
-This is an ecommerce website built with Django, javascript and tailwind
-You need to have python installed
+This is an ecommerce website built with Django, javascript and tailwind.
+You need to have python installed.
 
 Website purpose : practice
 
